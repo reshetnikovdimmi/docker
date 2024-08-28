@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   mysqldb:
-    container_name: mysqldb1
+    container_name: mysqldb
     image: "mysql:8.3"
     environment:
       MYSQL_USER: docker
@@ -22,12 +22,12 @@ services:
       context: ./
       dockerfile: Dockerfile
     ports:
-      - 8080:9999
+      - 8080:8080
     depends_on:
       - mysqldb
     environment:
       - spring.jpa.hibernate.ddl-auto=update
-      - spring.datasource.url=jdbc:mysql://mysqldb1:3306/db_docker
+      - spring.datasource.url=jdbc:mysql://mysqldb:3306/db_docker
       - spring.datasource.username=docker
       - spring.datasource.password=docker
       - spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
